@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Portfolio</title>
+  <style>
+    :root {
+      --bg: #020207;
+      --text: #f6f7fb;
+      --muted: rgba(246, 247, 251, .68);
+      --soft: rgba(255, 255, 255, .50);
+      --line: rgba(255, 255, 255, .08);
+      --glass: rgba(255, 255, 255, .035);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Literal CSS background, not an image */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 0% 18%, rgba(0, 89, 255, .55), transparent 31%),
+        radial-gradient(circle at 100% 21%, rgba(105, 30, 255, .50), transparent 33%),
+        radial-gradient(circle at 70% 100%, rgba(0, 68, 255, .42), transparent 38%),
+        radial-gradient(circle at 16% 95%, rgba(0, 34, 160, .46), transparent 38%),
+        linear-gradient(180deg, #020207 0%, #07051a 42%, #020207 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(0, 0, 0, .78), transparent 18%, transparent 78%, rgba(0, 0, 0, .45)),
+        radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, .28) 68%, rgba(0, 0, 0, .62) 100%);
+      backdrop-filter: blur(1px);
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 56px;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      background: rgba(0, 0, 0, .72);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      max-width: 1180px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .links a,
+    .project-link {
+      color: rgba(255, 255, 255, .86);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      border: 0;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+      white-space: nowrap;
+    }
+
+    .links a:hover,
+    .project-link:hover,
+    .logo:hover {
+      color: #fff;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chevron {
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      opacity: .9;
+    }
+
+    .nav-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 16px);
+      left: 50%;
+      min-width: 248px;
+      transform: translateX(-50%) translateY(8px);
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, .86);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .38);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    }
+
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 11px 12px;
+      border-radius: 12px;
+      color: rgba(255, 255, 255, .78);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, .07);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 104px 0;
+      scroll-margin-top: 72px;
+    }
+
+    .top-section {
+      min-height: calc(100vh - 56px);
+      display: grid;
+      align-content: center;
+      padding: 96px 0;
+    }
+
+    .intro-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(230px, 3fr) minmax(0, 7fr);
+      gap: clamp(36px, 7vw, 96px);
+      align-items: center;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-ring {
+      width: clamp(250px, 28vw, 380px);
+      aspect-ratio: 1;
+      padding: 2px;
+      border-radius: 80%;
+      background: linear-gradient(135deg, rgba(42, 2, 117, 0.95), rgba(9, 55, 155, 0.55), rgba(47, 7, 107, 0.8));
+      box-shadow: 0 0 44px rgba(27, 94, 255, .25), 0 28px 80px rgba(0, 0, 0, .38);
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 7px solid rgba(0, 0, 0, .76);
+      background: #111;
+    }
+
+    .profile-card h1 {
+      margin: 22px 0 0;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 750;
+    }
+
+    .title {
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, .66);
+      font-size: clamp(15px, 1.5vw, 18px);
+      line-height: 1.3;
+    }
+
+    .intro-copy {
+      max-width: 760px;
+    }
+
+    .intro-text {
+      margin-top: 0;
+      max-width: 760px;
+      font-size: clamp(10px, 1.5vw, 18px);
+      line-height: 1.3;
+      letter-spacing: -.045em;
+      color: rgba(255, 255, 255, .84);
+    }
+
+    .intro-text a {
+      color: rgba(255, 255, 255, .95);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .intro-text a:hover {
+      color: #ffffffab;
+    }
+
+    .eyebrow {
+      color: rgba(255, 255, 255, .58);
+      font-size: 14px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    p {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.65;
+      margin: 24px 0 0;
+    }
+
+    .paper-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .paper-card-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    .paper-card-link .paper-row {
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .paper-card-link:hover .paper-row {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .paper-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 25%) minmax(0, 75%);
+      gap: 24px;
+      align-items: stretch;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .035);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(18px);
+    }
+
+    .paper-image {
+      min-height: 180px;
+      height: 180px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: black;
+        /* linear-gradient(135deg, rgba(255, 255, 255, .14), transparent 36%),
+        radial-gradient(circle at 18% 20%, rgba(43, 112, 255, .75), transparent 38%),
+        radial-gradient(circle at 85% 78%, rgba(117, 55, 255, .55), transparent 42%),
+        linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015)); */
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .56);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .paper-img {
+      /* width: 100%;
+      height: 100%; */
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .paper-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8px 8px 8px 0;
+    }
+
+    .paper-body h3 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .authors {
+      margin: 14px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .62);
+    }
+
+    .paper-note {
+      margin: 16px 0 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .54);
+    }
+
+    .project-group+.project-group {
+      margin-top: 104px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .card {
+      min-height: 250px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--glass);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(18px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 1 / 1; /* min-height: 120px; */
+      border: 1px solid rgba(255, 255, 255, .10);
+      border-radius: 16px;
+      background: black;
+        /* radial-gradient(circle at 25% 20%, rgba(0, 104, 255, .34), transparent 38%),
+        radial-gradient(circle at 80% 78%, rgba(113, 41, 255, .30), transparent 42%),
+        rgba(255, 255, 255, .035); */
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .38);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .card-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      letter-spacing: -.03em;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .58);
+      max-width: 92%;
+    }
+
+
+
+    .project-card-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      height: 100%;
+    }
+
+    .project-card-link .card {
+      height: 100%;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .project-card-link:hover .card {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .experience-list {
+      margin-top: 34px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .experience-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .032);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(18px);
+      padding: 24px;
+    }
+
+    .experience-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo-placeholder {
+      width: 76px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(0, 102, 255, .25), transparent 44%),
+        rgba(255, 255, 255, .045);
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, .46);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;      /* vertical centering */
+      justify-content: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .plain-logo {
+      height: 90px;             /* fixed same height */
+      max-width: 200px;              /* max horizontal width */
+      object-fit: contain;
+      display: block;
+      margin-right: 10px
+    }
+
+    .company-name {
+      margin: 0 0 18px;
+      font-size: clamp(21px, 2.5vw, 30px);
+      letter-spacing: -.04em;
+    }
+
+    .role-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .role-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .role-row:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .role-title,
+    .role-context {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, .90);
+    }
+
+    .role-context {
+      text-align: right;
+      color: rgba(255, 255, 255, .72);
+    }
+
+    .role-meta {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.45;
+    }
+
+    .role-location {
+      text-align: right;
+    }
+
+
+    .education-list {
+      margin-top: 34px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .education-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .032);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(18px);
+      padding: 24px;
+    }
+
+    .education-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .education-heading {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .school-name {
+      margin: 0;
+      font-size: clamp(21px, 2.5vw, 30px);
+      letter-spacing: -.04em;
+    }
+
+    .graduation-date {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .60);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .degree-list {
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      color: rgba(255, 255, 255, .88);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .course-block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .course-block h4 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    .course-grid {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+      color: rgba(255, 255, 255, .68);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .course-grid li::before {
+      content: "- ";
+      color: rgba(255, 255, 255, .45);
+    }
+
+    @media (max-width: 900px) {
+      .paper-row {
+        grid-template-columns: 1fr;
+      }
+
+      .paper-body {
+        padding: 0;
+      }
+
+      .paper-image {
+        min-height: 160px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .role-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .role-context,
+      .role-location {
+        text-align: left;
+      }
+
+      .education-heading {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .graduation-date {
+        text-align: left;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        height: 54px;
+      }
+
+      nav {
+        padding: 0 18px;
+      }
+
+      .links {
+        gap: 18px;
+        overflow-x: auto;
+      }
+
+      .links a,
+      .project-link {
+        font-size: 13px;
+      }
+
+      .dropdown-menu {
+        left: auto;
+        right: 0;
+        transform: translateY(8px);
+      }
+
+      .nav-dropdown:hover .dropdown-menu,
+      .nav-dropdown:focus-within .dropdown-menu {
+        transform: translateY(0);
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+
+      main {
+        padding: 0 18px;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        text-align: center;
+      }
+
+      .intro-copy {
+        max-width: 100%;
+      }
+
+      .intro-text {
+        font-size: clamp(14px, 4.5vw, 20px);
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* Nav/dropdown refinements */
+    .nav-dropdown {
+      padding: 18px 0;
+      margin: -18px 0;
+    }
+
+    .dropdown-menu {
+      top: 100%;
+    }
+
+    .project-group {
+      scroll-margin-top: 96px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="logo" href="#top">Portfolio</a>
+      <div class="links">
+        <a href="#research-papers">Research</a>
+        <div class="nav-dropdown">
+          <button class="project-link" type="button">Projects <span aria-hidden="true" class="chevron"></span></button>
+          <div class="dropdown-menu" aria-label="Project sections">
+            <a href="#research-professional-projects">Professional</a>
+            <a href="#product-design-prototypes">Product</a>
+            <a href="#favorite-academic-projects">Academic</a>
+          </div>
+        </div>
+        <a href="#experience">Experience</a>
+        <a class="hide-mobile" href="#education">Education</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="top-section" id="top">
+      <div class="intro-grid">
+        <aside aria-label="Profile summary" class="profile-card">
+          <!-- <div class="profile-ring">
+            <img alt="Placeholder profile portrait" class="profile-image"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23cfd9ff'/%3E%3Cstop offset='45%25' stop-color='%235e6fc4'/%3E%3Cstop offset='100%25' stop-color='%230a1028'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='600' height='600' fill='url(%23g)'/%3E%3Ccircle cx='300' cy='235' r='96' fill='%23f5f7ff' opacity='.9'/%3E%3Cpath d='M126 548c24-118 112-184 174-184s150 66 174 184' fill='%23f5f7ff' opacity='.9'/%3E%3C/svg%3E" />
+          </div> -->
+          <div class="profile-ring">
+            <img 
+              alt="Isaac Gonzalez profile portrait" 
+              class="profile-image" 
+              src="assets/images/.pfp.png"
+            />
+          </div>
+          <br>
+          <h2>Isaac Gonzalez</h2>
+          <p class="title">UX / Product Engineer</p>
+        </aside>
+        <div class="intro-copy">
+          <!-- <div class="eyebrow">Portfolio Site Background Test</div> -->
+          <p class="intro-text">
+            Hello! I’m Isaac, a recent college graduate from the University of California, Berkeley where I received my
+            Bachelor’s in
+            <a href="https://eecs.berkeley.edu/" target="_blank" rel="noopener noreferrer">Electrical Engineering and
+              Computer Science</a>.
+            <br><br>
+            I’m an interdisciplinary product engineer situated at the intersection of UX design, human-computer
+            interaction, and artificial intelligence, all of which I’ve primarily worked in with the focus on creating
+            seamless or adaptable systems. Broadly, I’ve studied UI/UX, algorithms, design research (RtD), HCI future
+            interactions, computer graphics, signals, and robotics. Throughout my college career, I’ve grown to learn
+            and enjoy the engineering design process from end-to-end wherever the opportunity presents itself, along
+            with taking on the role as technical project manager or team lead when kickstarting a team to take on a
+            real-world challenge.
+            <br><br>
+            I have worked with research and project teams from universities such as UC Berkeley, Cal State Fullerton,
+            Cal State Long Beach, Baylor University, and Vanderbilt University, along with labs including the
+            <a href="https://bair.berkeley.edu/" target="_blank" rel="noopener noreferrer">BAIR (Berkeley Artificial
+              Intelligence Research) Lab</a>, the
+            <a href="https://vivecenter.berkeley.edu/" target="_blank" rel="noopener noreferrer">FHL Vive Center for
+              Enhanced Reality</a>, and the
+            <a href="https://jacobsinstitute.berkeley.edu/" target="_blank" rel="noopener noreferrer">Jacobs Design
+              Institute</a>. Organizations I’ve worked with, or have been contracted to, include
+            <a href="https://www.nasa.gov/learning-resources/" target="_blank" rel="noopener noreferrer">NASA</a>,
+            <a href="https://www.turing.com/" target="_blank" rel="noopener noreferrer">Turing</a>, and
+            <a href="https://deepmind.google/" target="_blank" rel="noopener noreferrer">DeepMind</a>.
+            <br><br>
+            Aside from my work, I enjoy running, traveling, working out at the gym, practicing the acoustic guitar,
+            rooting for my favorite sports teams, playing basketball, video games, biking, and bouldering!
+            <br><br>
+            <i> I am currently looking for a full-time position within my focus areas of study! </i>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="research-papers">
+      <div class="section-head">
+        <h2>Research Papers</h2>
+      </div>
+      <div class="paper-list">
+        <a class="paper-card-link" href="https://arxiv.org/abs/2507.01206"
+        target="_blank" rel="noopener noreferrer">
+          <article class="paper-row">
+            <!-- <div class="paper-image">Paper Image</div> -->
+            <div class="paper-image">
+              <img 
+                class="paper-img"
+                src="assets/images/Research01.png" 
+                alt="URSA"
+              />
+            </div>
+            <div class="paper-body">
+              <h4>Research Paper Placeholder Title One</h4>
+              <p class="authors">Ice Go, Coauthor Name, Another Researcher</p>
+              <p class="paper-note">Short optional description for the paper, venue, status, or the central idea. This
+                stays lightweight so the title and authors remain the focus.</p>
+            </div>
+          </article>
+        </a>
+        <a class="paper-card-link" href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2024/EECS-2024-16.html"
+        target="_blank" rel="noopener noreferrer">
+          <article class="paper-row">
+            <!-- <div class="paper-image">Paper Image</div> -->
+            <div class="paper-image">
+              <img 
+                class="paper-img"
+                src="assets/images/Research02.png" 
+                alt="URSA"
+              />
+            </div>
+            <div class="paper-body">
+              <h4>Research Paper Placeholder Title Two</h4>
+              <p class="authors">Ice Go, Collaborator Name, Faculty Advisor</p>
+              <p class="paper-note">Another placeholder body area for a publication summary, preprint note, conference
+                name, or project context.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="project-group" id="research-professional-projects">
+        <div class="section-head">
+          <h2>Research &amp; Professional Projects</h2>
+        </div>
+        <div class="cards">
+          <a class="project-card-link" href="projects/research-professional-01.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional01.png" 
+                  alt="URSA"
+                />
+              </div>
+              <h3>URSA</h3>
+              <p>Intuitive AR UI using non-intrusive display and LLM-based voice control.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/research-professional-02.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional02.png" 
+                  alt="LMCC"
+                />
+              </div>
+              <h3>LMCC</h3>
+              <p>A real-time Local Mission Control Console for Mars EVA scenarios.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="https://deepmind.google/models/gemini/" target="_blank"
+            rel="noopener noreferrer">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional03.png" 
+                  alt="Gemini"
+                />
+              </div>
+              <h3>Gemini 3</h3>
+              <p>Work under NDA <i>(Presented at NeurIPS 2025)</i></p>
+            </article>
+          </a>
+          <a class="project-card-link" href="https://developers.google.com/colab" target="_blank"
+            rel="noopener noreferrer">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional04.png" 
+                  alt="Colab"
+                />
+              </div>
+              <h3>Colab</h3>
+              <p>Work under NDA <i>(Presented at ICLR 2026)</i></p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/research-professional-05.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional05.png" 
+                  alt="TTE"
+                />
+              </div>
+              <h3>ScenicVR</h3>
+              <p>Personalized VR training curriculum generation using ITS and knowledge tracing.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/research-professional-06.html">
+            <article class="card">
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Professional06.png" 
+                  alt="Virgil"
+                />
+              </div>
+              <h3>VIRGIL</h3>
+              <p>A modular augmented reality interface for lunar EVA operations.</p>
+            </article>
+          </a>
+        </div>
+      </div>
+      <div class="project-group" id="product-design-prototypes">
+        <div class="section-head">
+          <h2>Product Design Prototypes &amp; Concepts</h2>
+        </div>
+        <div class="cards">
+          <a class="project-card-link" href="projects/prototype-01.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product01.png" 
+                  alt="TPREP"
+                />
+              </div>
+              <h3>SpikeGuard</h3>
+              <p>“Your One Stop For Drink Protection”</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/prototype-02.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product02.png" 
+                  alt="CLEVER"
+                />
+              </div>
+              <h3>CLEVER</h3>
+              <p>EVA sample-size and location calibration marker for lunar surface EVA operations.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/prototype-03.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product03.png" 
+                  alt="BATCH"
+                />
+              </div>
+              <h3>BATCH</h3>
+              <p>A glove-compatible adjustable tool cart handle concept for lunar EVA operations.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/prototype-04.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product04.png" 
+                  alt="BIOS"
+                />
+              </div>
+              <h3>BIOS</h3>
+              <p>A pressurized rover console concept for lunar surface EVA interfaces.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/prototype-05.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product05.png" 
+                  alt="DIAS"
+                />
+              </div>
+              <h3>DIAS</h3>
+              <p>A dual wrist-mounted spacesuit display concept for lunar surface EVAs.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/prototype-06.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Product06.png" 
+                  alt="Vroom"
+                />
+              </div>
+              <h3>“Race-ON”</h3>
+              <p>A Unity 3D free-roam driving prototype built for self-learning.</p>
+            </article>
+          </a>
+        </div>
+      </div>
+      <div class="project-group" id="favorite-academic-projects">
+        <div class="section-head">
+          <h2>Favorite Academic Projects</h2>
+        </div>
+        <div class="cards">
+          <a class="project-card-link" href="projects/academic-project-01.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic01.png" 
+                  alt="CS160"
+                />
+              </div>
+              <h3>Baybe On The Go</h3>
+              <p>Empowering families with babies to travel to the Bay Area with ease.</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-02.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic02.png" 
+                  alt="CS184"
+                />
+              </div>
+              <h3>Geometric Modeling</h3>
+              <p>Bezier Curves/Surfaces &amp; Triangle Meshes w/ Half-Edge DS</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-03.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic03.png" 
+                  alt="CS184"
+                />
+              </div>
+              <h3>Ray Tracing Renderer</h3>
+              <p>Physically-Based Rendering (PBR) w/ Path Tracing Algorithm</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-04.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic04.png" 
+                  alt="CS184"
+                />
+              </div>
+              <h3>Ray Marching Simulation</h3>
+              <p>SDF-Based Ray Marching, Volume Rendering, and Collision Detection</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-05.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic05.png" 
+                  alt="EECS106A"
+                />
+              </div>
+              <h3>LEGO My Eggo</h3>
+              <p>4x4 Art Replication w/ Computer Vision and UR7e Robot</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-06.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic06.png" 
+                  alt="EECS16B"
+                />
+              </div>
+              <h3>S1XT33N</h3>
+              <p>Voice-Controlled Mobile Robot</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-07.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic07.png" 
+                  alt="CS161"
+                />
+              </div>
+              <h3>UnicornBox</h3>
+              <p>Web Application Security Testing</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-08.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic08.png" 
+                  alt="CS61C"
+                />
+              </div>
+              <h3>KaChow</h3>
+              <p>Parallelism Convolution Engine (SIMD & OpenMP Optimization)</p>
+            </article>
+          </a>
+          <a class="project-card-link" href="projects/academic-project-09.html">
+            <article class="card">
+              <!-- <div class="card-image">Project Image</div> -->
+              <div class="card-image">
+                <img 
+                  class="card-img" 
+                  src="assets/images/Academic09.png" 
+                  alt="CS61C"
+                />
+              </div>
+              <h3>RISC-V CPU</h3>
+              <p>2-Stage Computer Processor</p>
+            </article>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="experience">
+      <div class="section-head">
+        <h2>Experience</h2>
+      </div>
+      <div class="experience-list">
+        <article class="experience-card">
+          <div class="experience-top">
+            <!-- <div class="logo-placeholder">Turing</div> -->
+            <!-- <div class="logo-placeholder">Google</div> -->
+            <img class="plain-logo" src="assets/logos/TuringWhite.png" alt="Turing">
+            <img class="plain-logo" src="assets/logos/Google.png" alt="Google">
+          </div>
+          <h3 class="company-name">Turing Enterprises</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Intern</p>
+                <p class="role-meta">June 2025 - May 2026</p>
+              </div>
+              <div>
+                <p class="role-context">Part-time Contract (Google)</p>
+                <p class="role-meta role-location">Remote</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">SPACE</div> -->
+            <!-- <div class="logo-placeholder">Artemis</div> -->
+            <img class="plain-logo" src="assets/logos/SPACE.png" alt="SPACE">
+            <img class="plain-logo" src="assets/logos/Artemis.png" alt="Artemis">
+          </div>
+          <h3 class="company-name">SPACE at Berkeley</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Technical Project Manager</p>
+                <p class="role-meta">August 2025 - January 2026</p>
+              </div>
+              <div>
+                <p class="role-context">NASA Micro-g NExT Competition</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+            <div class="role-row">
+              <div>
+                <p class="role-title">Co-President</p>
+                <p class="role-meta">January 2024 - July 2025</p>
+              </div>
+              <div>
+                <p class="role-context"></p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+            <div class="role-row">
+              <div>
+                <p class="role-title">Technical Project Manager</p>
+                <p class="role-meta">September 2023 - October 2024</p>
+              </div>
+              <div>
+                <p class="role-context">NASA SUITS Competition</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+            <div class="role-row">
+              <div>
+                <p class="role-title">LMCC Lead</p>
+                <p class="role-meta">October 2023 - May 2024</p>
+              </div>
+              <div>
+                <p class="role-context">NASA SUITS Competition</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">Vive</div> -->
+            <img class="plain-logo" src="assets/logos/FHL-Vive.png" alt="Vive">
+          </div>
+          <h3 class="company-name">FHL Vive Center for Enhanced Reality</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Undergrad Research Lead</p>
+                <p class="role-meta">October 2023 - June 2024</p>
+              </div>
+              <div>
+                <p class="role-context">Undergraduate Research</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">COE</div> -->
+            <!-- <div class="logo-placeholder">TPREP</div> -->
+            <img class="plain-logo" src="assets/logos/Berk-Engineering.png" alt="COE">
+            <img class="plain-logo" src="assets/logos/TPREP.png" alt="TPREP">
+          </div>
+          <h3 class="company-name">UC Berkeley College of Engineering</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Software Design Lead</p>
+                <p class="role-meta">June 2023 - July 2023</p>
+              </div>
+              <div>
+                <p class="role-context">Transfer Pre-Engineering Program</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">CC</div> -->
+            <!-- <div class="logo-placeholder">SUITS</div> -->
+            <img class="plain-logo" src="assets/logos/Cerritos-Logo.png" alt="Cerritos">
+            <img class="plain-logo" src="assets/logos/SUITS.jpg" alt="SUITS">
+          </div>
+          <h3 class="company-name">Cerritos College</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">UI/UX Developer</p>
+                <p class="role-meta">September 2022 - May 2023</p>
+              </div>
+              <div>
+                <p class="role-context">NASA SUITS Competition</p>
+                <p class="role-meta role-location">Norwalk, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">BAIR</div> -->
+            <!-- <div class="logo-placeholder">TTE</div> -->
+            <img class="plain-logo" src="assets/logos/BAIR.png" alt="BAIR logo">
+            <img class="plain-logo" src="assets/logos/BerkeleyTTE.png" alt="TTE logo">
+          </div>
+          <h3 class="company-name">Berkeley AI Research Lab</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Researcher</p>
+                <p class="role-meta">June 2022 - August 2022</p>
+              </div>
+              <div>
+                <p class="role-context">Internship</p>
+                <p class="role-meta role-location">Berkeley, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-top logo-row">
+            <!-- <div class="logo-placeholder">CC</div> -->
+            <!-- <div class="logo-placeholder">NExT</div> -->
+            <img class="plain-logo" src="assets/logos/Cerritos-Logo.png" alt="Cerritos">
+            <img class="plain-logo" src="assets/logos/Microg.png" alt="NExT">
+          </div>
+          <h3 class="company-name">Cerritos College</h3>
+          <div class="role-list">
+            <div class="role-row">
+              <div>
+                <p class="role-title">Design Engineer</p>
+                <p class="role-meta">September 2021 - May 2022</p>
+              </div>
+              <div>
+                <p class="role-context">NASA Micro-g NExT Competition</p>
+                <p class="role-meta role-location">Norwalk, CA</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="education">
+      <div class="section-head">
+        <h2>Education</h2>
+      </div>
+      <div class="education-list">
+        <article class="education-card">
+          <div class="education-top logo-row">
+            <!-- <div class="logo-placeholder">Berkeley Seal</div> -->
+            <!-- <div class="logo-placeholder">Cal Logo</div> -->
+            <img class="plain-logo" src="assets/logos/Cal-Berkeley.png" alt="Cal logo">
+            <img class="plain-logo" src="assets/logos/BerkeleySeal.png" alt="UC Berkeley seal">
+          </div>
+          <div class="education-heading">
+            <h3 class="school-name">University of California, Berkeley</h3>
+            <p class="graduation-date">Graduated: XX/XX/XXXX</p>
+          </div>
+          <ul class="degree-list">
+            <li>B.S. in Electrical Engineering and Computer Sciences</li>
+          </ul>
+          <div class="course-block">
+            <h4>Relevant Courses</h4>
+            <ul class="course-grid">
+              <li>UI/UX Design and HCI (CS 160)</li>
+              <li>Computer Graphics (CS 184)</li>
+              <li>Computer Security (CS 161)</li>
+              <li>Human Contexts and Ethics of Data (DATA C104)</li>
+              <li>Robotics (EECS 106A)</li>
+              <li>Signals and Systems (EE 120)</li>
+            </ul>
+          </div>
+          <div class="course-block">
+            <h4>Relevant Audited Courses</h4>
+            <ul class="course-grid">
+              <li>Artificial Intelligence (CS 188)</li>
+              <li>Algorithms (CS 170)</li>
+              <li>The Internet: Architecture and Protocols (CS 168)</li>
+              <li>Data Science (DATA C100)</li>
+              <li>Brain-Computer Interfaces (COGSCI 173)</li>
+              <li>3D Modeling and Animation (DeCal)</li>
+              <li>Project Management (UGBA 146)</li>
+            </ul>
+          </div>
+        </article>
+        <article class="education-card">
+          <div class="education-top logo-row">
+            <!-- <div class="logo-placeholder">CC Seal</div> -->
+            <!-- <div class="logo-placeholder">CC Brand Logo</div> -->
+            <img class="plain-logo" src="assets/logos/Cerritos.png" alt="CC logo">
+            <img class="plain-logo" src="assets/logos/Cerritos-Seal.png" alt="CC seal">
+          </div>
+          <div class="education-heading">
+            <h3 class="school-name">Cerritos College</h3>
+            <p class="graduation-date">Graduated: XX/XX/XXXX</p>
+          </div>
+          <ul class="degree-list">
+            <li>A.S. in Computer Science</li>
+            <li>A.S. in Physics</li>
+            <li>A.S. in Mathematics</li>
+            <li>A.S. in Engineering: Electrical Specialty</li>
+            <li>A.S. in Natural Sciences</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+    <section id="about">
+      <div class="section-head"> <!-- <h2>About Me</h2> --> </div>
+    </section>
+  </main>
+</body>
+
+</html>

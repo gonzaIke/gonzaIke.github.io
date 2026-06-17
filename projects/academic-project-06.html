@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>S1XT33N | Portfolio Project</title><style>
+
+:root{--bg:#020207;--text:#f6f7fb;--muted:rgba(246,247,251,.68);--line:rgba(255,255,255,.08);--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.07)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:#020207;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 0% 18%,rgba(0,89,255,.55),transparent 31%),radial-gradient(circle at 100% 21%,rgba(105,30,255,.50),transparent 33%),radial-gradient(circle at 70% 100%,rgba(0,68,255,.42),transparent 38%),radial-gradient(circle at 16% 95%,rgba(0,34,160,.46),transparent 38%),linear-gradient(180deg,#020207 0%,#07051a 42%,#020207 100%)}body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.76),transparent 18%,transparent 78%,rgba(0,0,0,.45)),radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.28) 68%,rgba(0,0,0,.62) 100%)}.noise{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}header{position:sticky;top:0;z-index:10;height:56px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.72);backdrop-filter:blur(18px)}nav{max-width:1180px;height:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.logo,a{color:white;text-decoration:none}.logo{font-size:15px;font-weight:600}.links{display:flex;gap:26px}.links a{color:rgba(255,255,255,.84);font-size:14px;font-weight:500}.links a:hover,.logo:hover{color:#fff}main{max-width:1120px;margin:0 auto;padding:78px 24px 110px}.back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:14px;margin-bottom:44px}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) 360px;gap:38px;align-items:start}.eyebrow{margin:0 0 12px;color:rgba(255,255,255,.56);font-size:13px;letter-spacing:.15em;text-transform:uppercase}.hero h1{margin:0;font-size:clamp(52px,8vw,96px);line-height:.92;letter-spacing:-.075em}.subtitle{margin:18px 0 0;font-size:clamp(23px,3vw,36px);line-height:1.13;letter-spacing:-.045em;color:rgba(255,255,255,.84)}.meta-card,.content-card,.logo-card,.image-gallery{border:1px solid var(--line);border-radius:28px;background:var(--glass);box-shadow:0 24px 80px rgba(0,0,0,.24);backdrop-filter:blur(18px)}.meta-card{padding:24px}.meta-grid{display:grid;gap:18px}.meta-item{padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}.meta-item:last-child{padding-bottom:0;border-bottom:0}.meta-label{margin:0 0 6px;color:rgba(255,255,255,.48);font-size:12px;letter-spacing:.13em;text-transform:uppercase}.meta-value{margin:0;color:rgba(255,255,255,.86);font-size:15px;line-height:1.55;white-space:pre-line}.logo-card{margin-top:34px;padding:28px;text-align:center}.logo-card h2{margin:0 0 18px;font-size:18px;letter-spacing:-.02em;text-align:center}.logo-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}.logo-group+.logo-group{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}.logo-placeholder{min-height:46px;min-width:96px;padding:0 16px;border:1px dashed rgba(255,255,255,.22);border-radius:14px;background:rgba(255,255,255,.04);display:grid;place-items:center;text-align:center;color:rgba(255,255,255,.48);font-size:11px;letter-spacing:.1em;text-transform:uppercase}.hero-image{margin-top:38px;min-height:360px;border:1px solid rgba(255,255,255,.1);border-radius:30px;background:radial-gradient(circle at 25% 20%,rgba(0,104,255,.48),transparent 38%),radial-gradient(circle at 80% 78%,rgba(113,41,255,.38),transparent 42%),rgba(255,255,255,.035);display:grid;place-items:center;color:rgba(255,255,255,.38);font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:28px}.content-card{margin-top:34px;padding:clamp(24px,5vw,54px)}.content-card h2{margin:0 0 18px;font-size:clamp(28px,4vw,44px);letter-spacing:-.055em;text-align:center}.content-card p{margin:0 0 18px;color:rgba(255,255,255,.72);font-size:17px;line-height:1.85}.content-card ul{margin:0 0 18px;color:rgba(255,255,255,.72);font-size:17px;line-height:1.85}.content-card li{margin-bottom:6px}.content-card p:last-child,.content-card ul:last-child{margin-bottom:0}.acknowledgement{margin:30px 0 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.66);font-size:16px;line-height:1.8;text-align:center}.image-gallery{margin-top:34px;padding:22px;display:grid;grid-template-columns:repeat(var(--gallery-columns,2),minmax(0,1fr));gap:16px}.image-gallery .hero-image{margin-top:0;min-height:260px}.gallery-title{grid-column:1/-1;margin:0 0 4px;text-align:center;color:rgba(255,255,255,.54);font-size:12px;letter-spacing:.14em;text-transform:uppercase}.pager{margin-top:34px;display:flex;justify-content:space-between;gap:16px}.pager a{border:1px solid var(--line);border-radius:999px;padding:12px 16px;background:rgba(255,255,255,.035);color:rgba(255,255,255,.78);font-size:14px}@media(max-width:860px){.image-gallery{grid-template-columns:1fr!important}.hero{grid-template-columns:1fr}.links{gap:16px}.hero-image{min-height:240px}.pager{flex-direction:column}.hero h1{font-size:54px}.logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.logo-group+.logo-group{margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}.logo-placeholder{min-width:0}}
+
+.nav-dropdown{position:relative;display:inline-flex;align-items:center}.project-link{color:rgba(255,255,255,.84);font-size:14px;font-weight:500;border:0;background:none;padding:0;cursor:pointer;font:inherit;display:inline-flex;align-items:center;gap:6px}.chevron{width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.9}.dropdown-menu{position:absolute;top:calc(100% + 16px);left:50%;min-width:248px;transform:translateX(-50%) translateY(8px);padding:10px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(0,0,0,.86);box-shadow:0 24px 70px rgba(0,0,0,.38);backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility .18s ease}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}.dropdown-menu a{display:block;padding:11px 12px;border-radius:12px;color:rgba(255,255,255,.78);font-size:13px;line-height:1.25}.dropdown-menu a:hover{background:rgba(255,255,255,.07);color:#fff}@media(max-width:860px){.dropdown-menu{left:auto;right:0;transform:translateY(8px)}.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{transform:translateY(0)}}
+/* Unified top bar copied from the main page */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 56px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: rgba(0, 0, 0, .72);
+  backdrop-filter: blur(18px);
+}
+nav {
+  max-width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.links a,
+.project-link {
+  color: rgba(255,255,255,.86);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+}
+.links a:hover,
+.project-link:hover,
+.logo:hover { color: #fff; }
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: .9;
+}
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 18px 0;
+  margin: -18px 0;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: 248px;
+  transform: translateX(-50%) translateY(8px);
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 18px;
+  background: rgba(0,0,0,.86);
+  box-shadow: 0 24px 70px rgba(0,0,0,.38);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 12px;
+  color: rgba(255,255,255,.78);
+  font-size: 13px;
+  line-height: 1.25;
+}
+.dropdown-menu a:hover {
+  background: rgba(255,255,255,.07);
+  color: #fff;
+}
+@media(max-width:860px){
+  .links{gap:16px}
+  .hide-mobile{display:none!important}
+  .dropdown-menu{left:auto;right:0;transform:translateY(8px)}
+  .nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{transform:translateY(0)}
+}
+</style></head><body><div class="noise"></div><header>
+<nav aria-label="Main navigation">
+<a class="logo" href="../index.html#top">Portfolio</a>
+<div class="links">
+<a href="../index.html#research-papers">Research</a>
+<div class="nav-dropdown">
+<button class="project-link" type="button">Projects <span aria-hidden="true" class="chevron"></span></button>
+<div class="dropdown-menu" aria-label="Project sections">
+<a href="../index.html#research-professional-projects">Professional</a>
+<a href="../index.html#product-design-prototypes">Product</a>
+<a href="../index.html#favorite-academic-projects">Academic</a>
+</div>
+</div>
+<a href="../index.html#experience">Experience</a>
+<a class="hide-mobile" href="../index.html#education">Education</a>
+</div>
+</nav>
+</header><main><a class="back" href="../index.html#favorite-academic-projects">← Back to Projects</a><section class="hero"><div><p class="eyebrow">Project Case Study</p><h1>S1XT33N</h1><p class="subtitle">Voice-Controlled Mobile Robot</p></div><aside class="meta-card"><div class="meta-grid"><div class="meta-item"><p class="meta-label">Timeline</p><p class="meta-value">February - May 2024</p></div><div class="meta-item"><p class="meta-label">Project Type</p><p class="meta-value">Semester-Long Lab Project</p></div><div class="meta-item"><p class="meta-label">Course</p><p class="meta-value">EECS 16B: Designing Information Devices and Systems II</p></div><div class="meta-item"><p class="meta-label">Team Size</p><p class="meta-value">2 members
+Isaac Gonzalez
+Rojan Kashani</p></div></div></aside></section><article class="content-card"><h2>Context</h2><p>Through the duration of the course, teams of 2 were to develop a vital part of their own S1XT33N robot in each lab, implementing all the key system components such as: analog sensor interface, classification of collected data, and control. The end goal of the S1XT33N robot would be its capability to successfully classify 4 different voice commands into instructions for its movement, which include turning left, turning right, going straight a short distance, and going straight a long distance.</p></article><article class="content-card"><h2>UC Berkeley’s EECS 16B Final Project</h2><p>Throughout the labs, we learned how to use essential lab equipment such as the function generator, oscilloscope, power supply, and digital multimeter while building and debugging circuits on a breadboard. We began by constructing op-amp circuits and practicing good circuit layout habits, then moved into digital and analog interfaces by creating 3-bit and 4-bit DACs with an Arduino and testing ADC behavior with the oscilloscope. In the Motion lab, we designed motor controller circuits for S1XT33N using BJTs and tested Arduino code to control the robot’s movement. The Sensing labs focused on voice control by integrating a mic board, biasing circuit, op-amp, and low-pass filter to process speech signals while reducing unwanted noise. We also designed high-pass and band-pass filters to allow specific frequencies to light different LEDs, which helped demonstrate how frequency response affects circuit behavior. In the System ID lab, we modeled the robot’s wheel velocity using encoder data and least squares analysis to find accurate linear parameters. The Controls lab built on this model by applying open-loop and closed-loop control so the car could drive straight and turn more reliably. We learned that feedback control was necessary because real motor behavior differed from the ideal model and required tuning for stability. Finally, in the SVD/PCA lab, we used recorded speech data, preprocessing, clustering, and thresholds to classify voice commands for different robot movements. Overall, these labs connected circuits, signal processing, modeling, controls, and machine learning into one system for building a voice-controlled robot.</p></article><div class="pager"><a href="academic-project-05.html">← Previous Project</a><a href="academic-project-07.html">Next Project →</a></div></main></body></html>

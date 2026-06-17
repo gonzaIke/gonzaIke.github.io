@@ -209,12 +209,28 @@
       text-align: center
     }
 
-    .logo-grid {
+    /*.logo-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
       align-items: center
+    }*/
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-height: 46px;
+      max-width: 140px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-group+.logo-group {
@@ -670,14 +686,20 @@
       </aside>
     </section>
     <section class="logo-card">
-      <h2>Affiliation Logos</h2>
+      <h2>Affiliations</h2>
       <div class="logo-grid">
-        <div class="logo-placeholder">NASA<br />Logo</div>
-        <div class="logo-placeholder">Artemis<br />Logo</div>
-        <div class="logo-placeholder">SUITS<br />Logo</div>
-        <div class="logo-placeholder">Vive Center<br />Logo</div>
-        <div class="logo-placeholder">Berkeley<br />Logo</div>
-        <div class="logo-placeholder">Baylor<br />Logo</div>
+        <!--<div class="logo-placeholder">NASA<br />Logo</div>
+          <div class="logo-placeholder">Artemis<br />Logo</div>
+          <div class="logo-placeholder">SUITS<br />Logo</div>
+          <div class="logo-placeholder">Vive Center<br />Logo</div>
+          <div class="logo-placeholder">Berkeley<br />Logo</div>
+          <div class="logo-placeholder">Baylor<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/NASA.png" alt="NASA logo">
+          <img class="logo-img" src="../assets/logos/Artemis.png" alt="Artemis logo">
+          <img class="logo-img" src="../assets/logos/SUITS.jpg" alt="NASA SUITS logo">
+          <img class="logo-img" src="../assets/logos/FHL-Vive.png" alt="FHL Vive Center logo">
+          <img class="logo-img" src="../assets/logos/Berkeley.png" alt="UC Berkeley logo">
+          <img class="logo-img" src="../assets/logos/Baylor.png" alt="Baylor University logo">
       </div>
     </section>
     <article class="content-card">

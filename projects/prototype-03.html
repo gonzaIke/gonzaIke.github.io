@@ -209,12 +209,28 @@
       text-align: center
     }
 
-    .logo-grid {
+    /*.logo-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
       align-items: center
+    }*/
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-height: 46px;
+      max-width: 140px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-group+.logo-group {
@@ -666,11 +682,14 @@
     </section>
     <section aria-label="Affiliation and sponsor logos" class="logo-card">
       <div class="logo-group">
-        <h2>Affiliation Logos</h2>
+        <h2>Affiliations</h2>
         <div class="logo-grid">
-          <div class="logo-placeholder">NExT<br />Logo</div>
+          <!-- <div class="logo-placeholder">NExT<br />Logo</div>
           <div class="logo-placeholder">Jacobs Design Institute<br />Logo</div>
-          <div class="logo-placeholder">Berkeley<br />Logo</div>
+          <div class="logo-placeholder">Berkeley<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/Microg.png" alt="NExT logo">
+          <img class="logo-img" src="../assets/logos/Jacobs-Design.png" alt="Jacobs logo">
+          <img class="logo-img" src="../assets/logos/Berkeley.png" alt="Berkeley logo">
         </div>
       </div>
     </section>
@@ -708,7 +727,7 @@
         Paulos (Electrical Engineering &amp; Computer Sciences).</p>
     </article>
     <section class="image-gallery" style="--gallery-columns:1;">
-      <p class="gallery-title">Image / Screenshot Placeholders</p>
+      <p class="gallery-title">Picture of the Team after submission of our proposal to NASA</p>
       <!-- <div class="hero-image">Picture of the team</div>  -->
       <div class="hero-image">
         <img 

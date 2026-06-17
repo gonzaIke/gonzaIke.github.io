@@ -209,12 +209,28 @@
       text-align: center
     }
 
-    .logo-grid {
+    /*.logo-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
       align-items: center
+    }*/
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-height: 46px;
+      max-width: 140px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-group+.logo-group {
@@ -659,19 +675,25 @@
     </section>
     <section aria-label="Affiliation and sponsor logos" class="logo-card">
       <div class="logo-group">
-        <h2>Affiliation Logos</h2>
+        <h2>Affiliations</h2>
         <div class="logo-grid">
-          <div class="logo-placeholder">Berkeley TTE<br />Logo</div>
-          <div class="logo-placeholder">BAIR<br />Logo</div>
+          <!-- <div class="logo-placeholder">Berkeley TTE<br />Logo</div>
+          <div class="logo-placeholder">BAIR<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/BerkeleyTTE.png" alt="TTE logo">
+          <img class="logo-img" src="../assets/logos/BAIR.png" alt="BAIR logo">
         </div>
       </div>
       <div class="logo-group">
-        <h2>Sponsor Logos</h2>
+        <h2>Sponsors</h2>
         <div class="logo-grid">
-          <div class="logo-placeholder">Hopper Dean Foundation<br />Logo</div>
+          <!-- <div class="logo-placeholder">Hopper Dean Foundation<br />Logo</div>
           <div class="logo-placeholder">NSF REU<br />Logo</div>
           <div class="logo-placeholder">Berkeley Engineering<br />Logo</div>
-          <div class="logo-placeholder">Meta<br />Logo</div>
+          <div class="logo-placeholder">Meta<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/Hopper-Dean.png" alt="HopperDean logo">
+          <img class="logo-img" src="../assets/logos/NSF.png" alt="NSF logo">
+          <img class="logo-img" src="../assets/logos/Berk-Engineering.png" alt="BerkEng logo">
+          <img class="logo-img" src="../assets/logos/Meta.png" alt="Meta logo">
         </div>
       </div>
     </section>

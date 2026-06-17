@@ -209,12 +209,28 @@
       text-align: center
     }
 
-    .logo-grid {
+    /*.logo-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
       align-items: center
+    }*/
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 24px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-height: 46px;
+      max-width: 140px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-group+.logo-group {
@@ -675,20 +691,27 @@
     </section>
     <section aria-label="Affiliation and sponsor logos" class="logo-card">
       <div class="logo-group">
-        <h2>Affiliation Logos</h2>
+        <h2>Affiliations</h2>
         <div class="logo-grid">
-          <div class="logo-placeholder">NASA<br />Logo</div>
+          <!-- <div class="logo-placeholder">NASA<br />Logo</div>
           <div class="logo-placeholder">Artemis<br />Logo</div>
           <div class="logo-placeholder">SUITS<br />Logo</div>
           <div class="logo-placeholder">Cerritos<br />Logo</div>
           <div class="logo-placeholder">CSUF<br />Logo</div>
-          <div class="logo-placeholder">CSULB<br />Logo</div>
+          <div class="logo-placeholder">CSULB<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/NASA.png" alt="NASA logo">
+          <img class="logo-img" src="../assets/logos/Artemis.png" alt="Artemis logo">
+          <img class="logo-img" src="../assets/logos/SUITS.jpg" alt="NASA SUITS logo">
+          <img class="logo-img" src="../assets/logos/Cerritos-Logo.png" alt="CC logo">
+          <img class="logo-img" src="../assets/logos/CSUF.png" alt="CSUF logo">
+          <img class="logo-img" src="../assets/logos/CSULB.png" alt="CSULB logo">
         </div>
       </div>
       <div class="logo-group">
-        <h2>Sponsor Logos</h2>
+        <h2>Sponsor</h2>
         <div class="logo-grid">
-          <div class="logo-placeholder">California Space Grant<br />Logo</div>
+          <!-- <div class="logo-placeholder">California Space Grant<br />Logo</div> -->
+          <img class="logo-img" src="../assets/logos/Cal-Grant.png" alt="CG logo">
         </div>
       </div>
     </section>
